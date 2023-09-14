@@ -26,6 +26,7 @@ const NavItems = ({ isModalView = false }) => {
                         <li
                             key={item.id}
                             className="block py-2 pl-3 pr-4 text-gray-900 rounded cursor-pointer md:p-0"
+                            onClick={closeModal}
                         >
                             {item.label}
                         </li>
@@ -45,6 +46,10 @@ const NavItems = ({ isModalView = false }) => {
 
 export default function Navbar() {
     const { showNavModel, setShowNavModel } = useContext(GlobalContext);
+
+    const closeModal = () => {
+        setShowNavModel(false);
+    };
 
     return <>
         <nav className="fixed top-0 left-0 z-20 w-full bg-white border-b border-gray-200">
@@ -130,9 +135,9 @@ export default function Navbar() {
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                fill-rule="evenodd"
+                                fillRule="evenodd"
                                 d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                                clip-rule="evenodd"
+                                clipRule="evenodd"
                             ></path>
                         </svg>
                     </button>
@@ -142,7 +147,7 @@ export default function Navbar() {
         </nav>
         <CommonModal
             showModalTitle={false}
-            mainContent={<NavItems isModalView={true} />}
+            mainContent={<NavItems isModalView={true} closeModal={closeModal} />}
             show={showNavModel}
             setShow={setShowNavModel}
         />
